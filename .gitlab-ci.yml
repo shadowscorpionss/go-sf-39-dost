@@ -35,8 +35,9 @@ build_image:stable:
   services:
     - docker:dind
   script:
-    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASS} ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:stable
+    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASS} ${PUBLIC_REGISTRY_HOST}
     - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:stable ./
+    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASS} ${PUBLIC_REGISTRY_HOST}
     - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:stable
   only:
     - main
@@ -47,7 +48,7 @@ build_image:latest:
   services:
     - docker:dind
   script:
-    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASS} ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest
+    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASS} ${PUBLIC_REGISTRY_HOST}
     - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest ./
     - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest
   when: manual
