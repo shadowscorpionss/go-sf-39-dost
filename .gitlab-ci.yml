@@ -50,5 +50,6 @@ build_image:latest:
   script:
     - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASS} ${PUBLIC_REGISTRY_HOST}
     - docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest ./
+    - docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASS} ${PUBLIC_REGISTRY_HOST}
     - docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest
   when: manual
